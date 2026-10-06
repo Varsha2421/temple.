@@ -1,0 +1,13 @@
+{
+  "name": "temple-darshan-app",
+  "version": "1.0.0",
+  "description": "Temple information and darshan/ticket booking web app with history, timings, gallery and bilingual (English/Tamil) support.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

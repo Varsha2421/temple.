@@ -1,0 +1,200 @@
+{
+  "brihadeeswarar": [
+    {
+      "label": "Vimana (Main Tower)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Brihadeeswarar_Temple_Thanjavur.jpg/800px-Brihadeeswarar_Temple_Thanjavur.jpg"
+    },
+    {
+      "label": "Nandi Mandapam",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Big_Temple_Nandi_Thanjavur.jpg/800px-Big_Temple_Nandi_Thanjavur.jpg"
+    },
+    {
+      "label": "Shivalingam Sanctum",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Brihadeeswarar_Temple%2C_Thanjavur_16.jpg/800px-Brihadeeswarar_Temple%2C_Thanjavur_16.jpg"
+    },
+    {
+      "label": "Temple Compound",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Thanjavur_Periya_Kovil_Front_View.jpg/800px-Thanjavur_Periya_Kovil_Front_View.jpg"
+    }
+  ],
+  "ranganathaswamy": [
+    {
+      "label": "21 Gopurams Rajagopuram",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Srirangam_temple_tower.jpg/800px-Srirangam_temple_tower.jpg"
+    },
+    {
+      "label": "Reclining Ranganatha Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Ranganathaswamy_temple_tiruchirappalli.jpg/800px-Ranganathaswamy_temple_tiruchirappalli.jpg"
+    },
+    {
+      "label": "Pillared Mandapam",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Sri_Ranganathaswamy_Temple_Srirangam.jpg/800px-Sri_Ranganathaswamy_Temple_Srirangam.jpg"
+    },
+    {
+      "label": "Temple Tank",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Srirangam_temple_hall.jpg/800px-Srirangam_temple_hall.jpg"
+    }
+  ],
+  "murugan_palani": [
+    {
+      "label": "Hilltop Temple View",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Palanihills.JPG/800px-Palanihills.JPG"
+    },
+    {
+      "label": "Palani Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Palani_Murugan_temple_hill.jpg/800px-Palani_Murugan_temple_hill.jpg"
+    },
+    {
+      "label": "Temple Steps",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Palani_temple_steps.jpg/800px-Palani_temple_steps.jpg"
+    },
+    {
+      "label": "Panjamirtham Prasadam",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Palani_Murugan_temple.jpg/800px-Palani_Murugan_temple.jpg"
+    }
+  ],
+  "ramanathaswamy": [
+    {
+      "label": "1212m Longest Corridor",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rameswaram_Corridor.jpg/800px-Rameswaram_Corridor.jpg"
+    },
+    {
+      "label": "22 Sacred Theerthams",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ramanathaswamy_temple7.JPG/800px-Ramanathaswamy_temple7.JPG"
+    },
+    {
+      "label": "Seashore View",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Rameswaram_Temple_East_Gopuram.jpg/800px-Rameswaram_Temple_East_Gopuram.jpg"
+    },
+    {
+      "label": "Evening Sanctum Pooja",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Rameswaram_seashore_temple.jpg/800px-Rameswaram_seashore_temple.jpg"
+    }
+  ],
+  "nataraja_chidambaram": [
+    {
+      "label": "Nataraja Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Le_temple_de_Shiva_Nataraja_%28Chidambaram%2C_Inde%29_%2814037020332%29.jpg/800px-Le_temple_de_Shiva_Nataraja_%28Chidambaram%2C_Inde%29_%2814037020332%29.jpg"
+    },
+    {
+      "label": "Eastern Gopuram",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Chidambaram_Nataraja_Temple_Eastern_Gopuram.jpg/800px-Chidambaram_Nataraja_Temple_Eastern_Gopuram.jpg"
+    },
+    {
+      "label": "Temple Tank",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chidambaram_temple_tank.jpg/800px-Chidambaram_temple_tank.jpg"
+    },
+    {
+      "label": "Golden Roof Sabhai",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Chidambaram_gopuram.jpg/800px-Chidambaram_gopuram.jpg"
+    }
+  ],
+  "arunachaleswarar": [
+    {
+      "label": "Karthigai Deepam Beacon",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Arunachalam_temple_from_a_nearby_hill.jpg/800px-Arunachalam_temple_from_a_nearby_hill.jpg"
+    },
+    {
+      "label": "Arunachala Hill View",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tiruvannamalai_Temple_aerial.jpg/800px-Tiruvannamalai_Temple_aerial.jpg"
+    },
+    {
+      "label": "East Gopuram",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Thiruvannamalai_Temple_Gopuram.jpg/800px-Thiruvannamalai_Temple_Gopuram.jpg"
+    },
+    {
+      "label": "Girivalam Path",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Arunachaleswara_Temple_Tiruvannamalai.jpg/800px-Arunachaleswara_Temple_Tiruvannamalai.jpg"
+    }
+  ],
+  "kapaleeshwarar": [
+    {
+      "label": "Mylapore Gopuram",
+      "image": "/img/kapaleeshwarar_gopuram.jpg"
+    },
+    {
+      "label": "Temple Tank",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Kapaleeshwarar_Temple_Gopuram.jpg/800px-Kapaleeshwarar_Temple_Gopuram.jpg"
+    },
+    {
+      "label": "Arubathimoovar Festival",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Mylapore_Kapaleeshwarar_temple_tank.jpg/800px-Mylapore_Kapaleeshwarar_temple_tank.jpg"
+    },
+    {
+      "label": "Inner Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Kapaleeshwarar_temple_side_view.jpg/800px-Kapaleeshwarar_temple_side_view.jpg"
+    }
+  ],
+  "ekambareswarar": [
+    {
+      "label": "58m Gopuram",
+      "image": "/img/ekambareswarar_gopuram.jpg"
+    },
+    {
+      "label": "3500-year Mango Tree",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Ekambareswarar_Temple_Kanchipuram.jpg/800px-Ekambareswarar_Temple_Kanchipuram.jpg"
+    },
+    {
+      "label": "Temple Corridor",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Ekambareswarar_Temple_gopuram_view.jpg/800px-Ekambareswarar_Temple_gopuram_view.jpg"
+    },
+    {
+      "label": "Earth Lingam Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Ekambaranathar_temple_hall.jpg/800px-Ekambaranathar_temple_hall.jpg"
+    }
+  ],
+  "tiruchendur_murugan": [
+    {
+      "label": "Seashore Gopuram",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Thiruchendur11.jpg"
+    },
+    {
+      "label": "Bay of Bengal View",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Thiruchendur_Temple_Tower.jpg/800px-Thiruchendur_Temple_Tower.jpg"
+    },
+    {
+      "label": "Soorasamharam Festival",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tiruchendur_Murugan_Temple_Seashore.jpg/800px-Tiruchendur_Murugan_Temple_Seashore.jpg"
+    },
+    {
+      "label": "Sunset Ocean Pooja",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Tiruchendur_temple_beach.jpg/800px-Tiruchendur_temple_beach.jpg"
+    }
+  ],
+  "nellaiappar": [
+    {
+      "label": "Musical Pillars Hall",
+      "image": "/img/nellaiappar_pillars.jpg"
+    },
+    {
+      "label": "Gandhimathi Shrine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Nellaiappar_Temple_Gopuram.jpg/800px-Nellaiappar_Temple_Gopuram.jpg"
+    },
+    {
+      "label": "Twin Gopurams",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Nellaiappar_temple_car.jpg/800px-Nellaiappar_temple_car.jpg"
+    },
+    {
+      "label": "Festival Procession",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Nellaiappar_Kovil_Tirunelveli.jpg/800px-Nellaiappar_Kovil_Tirunelveli.jpg"
+    }
+  ],
+  "kasi_viswanathar": [
+    {
+      "label": "Gopuram & Western Ghats",
+      "image": "/img/kasi_viswanathar_gopuram.jpg"
+    },
+    {
+      "label": "Courtallam Waterfalls",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Tenkasi_Kasi_Viswanathar_Temple.jpg/800px-Tenkasi_Kasi_Viswanathar_Temple.jpg"
+    },
+    {
+      "label": "Chittar River Ghat",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Courtallam_main_falls.jpg/800px-Courtallam_main_falls.jpg"
+    },
+    {
+      "label": "Inner Sanctum",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/The_magnificent_Kasi_Vishwanathat_Temple_Rajagopuram.jpg/800px-The_magnificent_Kasi_Vishwanathat_Temple_Rajagopuram.jpg"
+    }
+  ]
+}

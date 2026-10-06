@@ -1,0 +1,47 @@
+{
+  "meenakshi": [
+    "/img/meenakshi_gopuram.png",
+    "/img/meenakshi_temple_tank.png",
+    "/img/meenakshi_pillared_hall.png",
+    "/img/meenakshi_inner_sanctum.png"
+  ],
+  "brihadeeswarar": [
+    "/img/brihadeeswarar_pic_4.jpg"
+  ],
+  "ranganathaswamy": [
+    "/img/ranganathaswamy_pic_1.jpg"
+  ],
+  "murugan_palani": [
+    "/img/murugan_palani_pic_1.jpg",
+    "/img/murugan_palani_pic_3.jpg"
+  ],
+  "ramanathaswamy": [
+    "/img/ramanathaswamy_pic_2.jpg"
+  ],
+  "nataraja_chidambaram": [
+    "/img/nataraja_chidambaram_pic_2.jpg",
+    "/img/nataraja_chidambaram_pic_3.jpg"
+  ],
+  "arunachaleswarar": [
+    "/img/arunachaleswarar_pic_1.jpg",
+    "/img/arunachaleswarar_pic_3.jpg"
+  ],
+  "kapaleeshwarar": [
+    "/img/kapaleeshwarar_pic_1.jpg",
+    "/img/kapaleeshwarar_pic_4.jpg"
+  ],
+  "ekambareswarar": [
+    "/img/ekambareswarar_pic_2.jpg"
+  ],
+  "tiruchendur_murugan": [
+    "/img/tiruchendur_murugan_pic_2.jpg",
+    "/img/tiruchendur_murugan_pic_4.jpg"
+  ],
+  "nellaiappar": [
+    "/img/nellaiappar_pic_3.jpg"
+  ],
+  "kasi_viswanathar": [
+    "/img/kasi_viswanathar_pic_1.jpg",
+    "/img/kasi_viswanathar_pic_3.jpg"
+  ]
+}

@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Darshan — Tamil Nadu Temple Booking Portal</title>
+<meta name="description" content="Book darshan tickets online for famous Tamil Nadu temples — Meenakshi Madurai, Brihadeeswarar Thanjavur, Ranganathaswamy, Palani Murugan and more.">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════
+   PAGE HERO
+══════════════════════════════ */
+.bk-hero {
+  padding: 130px 0 60px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.bk-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,184,75,0.08) 0%, transparent 70%);
+}
+.bk-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,184,75,0.1);
+  border: 1px solid rgba(232,184,75,0.3);
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.bk-hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  line-height: 1.1;
+}
+.bk-hero-title span {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-bright) 50%, var(--saffron) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+.bk-hero-sub {
+  color: var(--ivory-dim);
+  font-size: 1rem;
+  max-width: 54ch;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ══════════════════════════════
+   STEP PROGRESS BAR
+══════════════════════════════ */
+.bk-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 40px 0 0;
+  position: relative;
+}
+.bk-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.bk-step-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border-2);
+  background: var(--surface);
+  color: var(--ivory-mute);
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+.bk-step.active .bk-step-circle {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  border-color: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 0 0 6px rgba(232,184,75,0.15);
+}
+.bk-step.done .bk-step-circle {
+  background: linear-gradient(135deg, var(--vermilion), var(--saffron));
+  border-color: var(--saffron);
+  color: white;
+}
+.bk-step-label {
+  font-size: 0.74rem;
+  color: var(--ivory-mute);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.bk-step.active .bk-step-label,
+.bk-step.done .bk-step-label { color: var(--gold); }
+.bk-step-line {
+  width: 80px;
+  height: 2px;
+  background: var(--border);
+  margin-bottom: 26px;
+  position: relative;
+  transition: background 0.4s ease;
+}
+.bk-step-line.done { background: linear-gradient(to right, var(--saffron), var(--gold)); }
+
+/* ══════════════════════════════
+   STEP PANELS
+══════════════════════════════ */
+.bk-panel { display: none; }
+.bk-panel.active { display: block; }
+
+/* ══════════════════════════════
+   STEP 1 — TEMPLE SELECTION
+══════════════════════════════ */
+.bk-search-wrap {
+  max-width: 540px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+.bk-search {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  color: var(--ivory);
+  padding: 14px 20px 14px 48px;
+  border-radius: var(--radius-lg);
+  font-family: var(--sans);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 0;
+}
+.bk-search:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232,184,75,0.15);
+}
+.bk-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--ivory-mute);
+  pointer-events: none;
+}
+.temples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 60px;
+}
+.temple-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.temple-card-img-header {
+  height: 170px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.temple-card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,10,7,0.95) 0%, rgba(13,10,7,0.3) 60%, transparent 100%);
+}
+.temple-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 20px var(--gold-glow);
+}
+.temple-card.selected {
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 0 4px rgba(232,184,75,0.25), 0 20px 50px rgba(0,0,0,0.7);
+  background: var(--surface-2);
+}
+.temple-select-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(13,10,7,0.7);
+  border: 1px solid var(--border-2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  z-index: 5;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+.temple-card.selected .temple-select-check {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  color: var(--ink);
+  border-color: var(--gold-bright);
+  transform: scale(1.15);
+}
+.temple-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.temple-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.temple-location {
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.temple-deity {
+  font-size: 0.82rem;
+  color: var(--ivory-dim);
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--gold);
+}
+.temple-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.temple-tag {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--ink-3);
+  border: 1px solid var(--border);
+  color: var(--gold-bright);
+}
+.temple-meta {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--ivory-dim);
+}
+  color: var(--ivory-mute);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.temple-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.temple-meta-val { color: var(--ivory-dim); font-weight: 500; }
+.temple-select-check {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  color: var(--ink);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.temple-card.selected .temple-select-check { display: flex; }
+.temple-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+.star { font-size: 0.8rem; color: var(--gold); }
+.star.empty { color: var(--border-2); }
+
+/* ══════════════════════════════
+   STEP 2 — BOOKING FORM
+══════════════════════════════ */
+.bk-form-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.selected-temple-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.selected-temple-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--temple-color, var(--gold));
+}
+.selected-temple-icon-lg {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+.selected-temple-info h4 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ivory);
+  margin-bottom: 3px;
+}
+.selected-temple-info p {
+  font-size: 0.82rem;
+  color: var(--gold);
+}
+.change-temple-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--ivory-dim);
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.change-temple-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+.bk-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  margin-bottom: 24px;
+}
+.bk-section-label {
+  font-family: var(--serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bk-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 0;
+}
+.bk-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.bk-field.full { grid-column: 1 / -1; }
+.bk-field label {
+  font-size: 0.84rem;
+  color: var(--ivory-dim);
+  font-weight: 500;
+  margin: 0;
+}
+.bk-field input,
+.bk-field select {
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  color: var(--ivory);
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  margin: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+.bk-field input:focus,
+.bk-field select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232,184,75,0.12);
+  outline: none;
+}
+
+/* Darshan type cards */
+.darshan-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.darshan-type-card {
+  background: var(--ink-2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.darshan-type-card:hover {
+  border-color: var(--border-2);
+  background: var(--surface);
+}
+.darshan-type-card.selected {
+  border-color: var(--gold);
+  background: rgba(232,184,75,0.08);
+  box-shadow: 0 0 0 2px rgba(232,184,75,0.15);
+}
+.darshan-type-card .dt-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ivory);
+  margin-bottom: 4px;
+}
+.darshan-type-card .dt-price {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* People counter */
+.people-counter {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  width: fit-content;
+}
+.counter-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--surface);
+  border: none;
+  color: var(--ivory);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-family: var(--sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter-btn:hover { background: var(--surface-2); color: var(--gold); }
+.counter-val {
+  width: 56px;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--ink-2);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+/* Order summary */
+.bk-summary {
+  background: linear-gradient(135deg, rgba(232,184,75,0.06) 0%, rgba(193,68,46,0.04) 100%);
+  border: 1px solid rgba(232,184,75,0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+.bk-summary h4 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.06em;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-key { color: var(--ivory-mute); }
+.summary-val { color: var(--ivory); font-weight: 500; }
+.summary-total {
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-2) !important;
+}
+.summary-total .summary-key { color: var(--ivory-dim); font-weight: 600; }
+.summary-total .summary-val {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* Error box */
+.bk-error {
+  background: rgba(193,68,46,0.1);
+  border: 1px solid rgba(193,68,46,0.3);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  color: #E48576;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: none;
+}
+
+/* ══════════════════════════════
+   STEP 3 — TICKET
+══════════════════════════════ */
+.bk-ticket-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+.bk-success-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+@keyframes pop-in {
+  from { transform: scale(0) rotate(-20deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+.bk-success-title {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--ivory);
+  margin-bottom: 8px;
+}
+.bk-success-sub {
+  color: var(--ivory-dim);
+  margin-bottom: 36px;
+  font-size: 0.95rem;
+}
+.bk-ticket {
+  background: var(--surface);
+  border: 2px dashed var(--gold-dim);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+.bk-ticket-header {
+  background: linear-gradient(135deg, var(--surface-2), var(--ink-2));
+  padding: 24px;
+  border-bottom: 2px dashed var(--border-2);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.bk-ticket-temple-icon { font-size: 2.5rem; }
+.bk-ticket-id {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.bk-ticket-temple-name {
+  font-size: 0.82rem;
+  color: var(--ivory-dim);
+  margin-top: 2px;
+}
+.bk-ticket-body { padding: 24px; }
+.bk-ticket-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.bk-ticket-row:last-child { border-bottom: none; }
+.bk-ticket-key { color: var(--ivory-mute); }
+.bk-ticket-val { color: var(--ivory); font-weight: 500; }
+.bk-ticket-status-confirmed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(111,169,107,0.15);
+  border: 1px solid rgba(111,169,107,0.3);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  color: #A9CBA6;
+}
+
+/* Lookup section */
+.bk-lookup-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+
+/* ══════════════════════════════
+   NAV & MISC
+══════════════════════════════ */
+.bk-nav-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer.bk-footer {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--ivory-mute);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  .bk-field-row { grid-template-columns: 1fr; }
+  .temples-grid { grid-template-columns: 1fr; }
+  .bk-form-card { padding: 22px; }
+  .bk-step-line { width: 40px; }
+  .bk-step-label { display: none; }
+  .darshan-type-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span style="font-size:1.5rem;filter:drop-shadow(0 0 8px var(--gold));">🛕</span>
+      <span style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ivory);letter-spacing:0.06em;text-transform:uppercase;">Tamil Nadu Temples</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" data-i18n="nav_home">Home</a></li>
+      <li><a href="/history.html" data-i18n="nav_history">History</a></li>
+      <li><a href="/timings.html" data-i18n="nav_timings">Timings</a></li>
+      <li><a href="/gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="/booking.html" class="nav-book-btn active">🎟 Book Darshan</a></li>
+      <li><button class="lang-toggle" id="langToggle">தமிழ்</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="bk-hero">
+  <div class="wrap" style="position:relative;z-index:1;">
+    <div class="bk-hero-eyebrow">🎟️ Online Booking Portal</div>
+    <h1 class="bk-hero-title">
+      Book Your <span>Darshan</span><br>at Any Tamil Nadu Temple
+    </h1>
+    <p class="bk-hero-sub">
+      Choose from 8 sacred temples across Tamil Nadu — Meenakshi, Brihadeeswarar, Ranganathaswamy, Palani Murugan and more. Book your darshan slot in minutes.
+    </p>
+  </div>
+</section>
+
+<!-- STEPPER -->
+<div class="wrap">
+  <div class="bk-stepper" id="stepper">
+    <div class="bk-step active" id="step-indicator-1">
+      <div class="bk-step-circle">1</div>
+      <div class="bk-step-label">Select Temple</div>
+    </div>
+    <div class="bk-step-line" id="line-1"></div>
+    <div class="bk-step" id="step-indicator-2">
+      <div class="bk-step-circle">2</div>
+      <div class="bk-step-label">Your Details</div>
+    </div>
+    <div class="bk-step-line" id="line-2"></div>
+    <div class="bk-step" id="step-indicator-3">
+      <div class="bk-step-circle">3</div>
+      <div class="bk-step-label">Confirmation</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ STEP 1: SELECT TEMPLE ══════ -->
+<section class="bk-panel active" id="panel-1" style="padding: 48px 0 20px;">
+  <div class="wrap">
+    <!-- Search box -->
+    <div class="bk-search-wrap">
+      <span class="bk-search-icon">🔍</span>
+      <input class="bk-search" id="templeSearch" type="text" placeholder="Search temples by name, location or deity…">
+    </div>
+
+    <!-- Temple cards grid -->
+    <div class="temples-grid" id="templesGrid">
+      <!-- populated by JS -->
+    </div>
+
+    <div style="text-align:center; margin-bottom:48px;">
+      <button class="btn btn-primary btn-large" id="goToStep2Btn" disabled>
+        <span class="btn-icon">🪔</span> Proceed to Book — <span id="selectedTempleName">Select a temple first</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ STEP 2: BOOKING FORM ══════ -->
+<section class="bk-panel" id="panel-2" style="padding: 48px 0;">
+  <div class="wrap bk-form-wrap">
+
+    <!-- Selected temple banner -->
+    <div class="selected-temple-banner" id="selectedTempleBanner">
+      <div class="selected-temple-icon-lg" id="bannerIcon">🛕</div>
+      <div class="selected-temple-info">
+        <h4 id="bannerName">—</h4>
+        <p id="bannerLocation">—</p>
+      </div>
+      <button class="change-temple-btn" id="changeTempleBtn">← Change Temple</button>
+    </div>
+
+    <!-- Error box -->
+    <div class="bk-error" id="formError"></div>
+
+    <!-- Form card -->
+    <div class="bk-form-card" id="formCard">
+      <form id="bookingForm">
+
+        <!-- Personal info -->
+        <div class="bk-section-label">👤 Personal Information</div>
+        <div class="bk-field-row">
+          <div class="bk-field full">
+            <label for="name">Full Name *</label>
+            <input id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+        </div>
+        <div class="bk-field-row">
+          <div class="bk-field">
+            <label for="phone">Phone Number *</label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="bk-field">
+            <label for="email">Email Address (optional)</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <!-- Visit details -->
+        <div class="bk-section-label" style="margin-top: 8px;">📅 Visit Details</div>
+        <div class="bk-field-row">
+          <div class="bk-field">
+            <label for="date">Darshan Date *</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div class="bk-field">
+            <label for="slot">Darshan Slot *</label>
+            <select id="slot" name="slot" required></select>
+          </div>
+        </div>
+
+        <!-- People counter -->
+        <div class="bk-field">
+          <label>Number of People *</label>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div class="people-counter">
+              <button type="button" class="counter-btn" id="peopleMinus">−</button>
+              <div class="counter-val" id="peopleVal">1</div>
+              <button type="button" class="counter-btn" id="peoplePlus">+</button>
+            </div>
+            <span style="font-size:0.85rem;color:var(--ivory-mute);">Maximum 10 people per booking</span>
+            <input type="hidden" id="people" name="people" value="1">
+          </div>
+        </div>
+        <div id="availabilityNote" class="help-text"></div>
+
+        <!-- Darshan type -->
+        <div class="bk-section-label" style="margin-top: 8px;">🪔 Darshan Type</div>
+        <div class="darshan-type-grid" id="darshanTypeGrid">
+          <!-- populated by JS -->
+        </div>
+        <input type="hidden" id="darshanType" name="darshanType" value="general">
+
+        <button type="submit" class="btn btn-primary btn-large" style="width:100%;" id="submitBtn">
+          <span class="btn-icon">🎟️</span> Confirm & Book Darshan
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ STEP 3: TICKET / CONFIRMATION ══════ -->
+<section class="bk-panel" id="panel-3" style="padding: 60px 0;">
+  <div class="wrap bk-ticket-wrap">
+    <div class="bk-success-icon">🎉</div>
+    <h2 class="bk-success-title">Booking Confirmed!</h2>
+    <p class="bk-success-sub">Your darshan slot has been reserved. Carry this ticket ID when you visit.</p>
+
+    <div id="ticketCard"></div>
+
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;">
+      <button class="btn btn-gold" id="bookAnotherBtn">
+        <span class="btn-icon">🛕</span> Book Another Temple
+      </button>
+      <a href="/" class="btn btn-glass">← Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOOKUP SECTION (always visible) -->
+<div class="wrap">
+  <div class="bk-lookup-card">
+    <h3 style="font-family:var(--serif);margin:0 0 6px;font-size:1.1rem;">Already booked? Look up your ticket</h3>
+    <p style="color:var(--ivory-dim);font-size:0.88rem;margin-bottom:18px;">Enter your booking ID below to view or cancel your booking.</p>
+    <div style="display:flex;gap:10px;">
+      <input id="lookupId" placeholder="TMP-XXXXX" style="margin-bottom:0;flex:1;">
+      <button class="btn btn-outline" id="lookupBtn" style="white-space:nowrap;">Find Ticket</button>
+    </div>
+    <div id="lookupResult" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<footer class="bk-footer">
+  <div class="wrap">🛕 Tamil Nadu Temple Darshan Booking Portal — Serving Pilgrims with Divine Ease</div>
+</footer>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let selectedTemple = null;
+let darshanTypes = [];
+let selectedDarshanType = 'general';
+let peopleCount = 1;
+
+// ═══════════════════════════════════════════════
+// NAV SCROLL
+// ═══════════════════════════════════════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ═══════════════════════════════════════════════
+// STEP NAVIGATION
+// ═══════════════════════════════════════════════
+function gotoStep(n) {
+  document.querySelectorAll('.bk-panel').forEach((p, i) => {
+    p.classList.toggle('active', i + 1 === n);
+  });
+  [1, 2, 3].forEach(i => {
+    const ind = document.getElementById(`step-indicator-${i}`);
+    ind.classList.remove('active', 'done');
+    if (i < n) ind.classList.add('done');
+    else if (i === n) ind.classList.add('active');
+    if (i < 3) {
+      const line = document.getElementById(`line-${i}`);
+      line.classList.toggle('done', i < n);
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════
+// STEP 1 — LOAD TEMPLES
+// ═══════════════════════════════════════════════
+function renderStars(rating) {
+  return Array.from({ length: 5 }, (_, i) =>
+    `<span class="star${i < rating ? '' : ' empty'}">★</span>`
+  ).join('');
+}
+
+async function loadTemples() {
+  const res = await fetch('/api/temples');
+  const temples = await res.json();
+  renderTemples(temples);
+
+  document.getElementById('templeSearch').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    const filtered = temples.filter(t =>
+      t.name.toLowerCase().includes(q) ||
+      t.location.toLowerCase().includes(q) ||
+      t.deity.toLowerCase().includes(q) ||
+      t.tags.some(tag => tag.toLowerCase().includes(q))
+    );
+    renderTemples(filtered);
+  });
+}
+
+function getTempleCardImage(t) {
+  if (t.id === 'meenakshi') return '/img/meenakshi_gopuram.png';
+  if (t.id === 'brihadeeswarar') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Brihadeeswarar_Temple_Thanjavur.jpg/800px-Brihadeeswarar_Temple_Thanjavur.jpg';
+  if (t.id === 'thiruchendur' || t.id === 'tiruchendur_murugan') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Thiruchendur_Temple_Tower.jpg/800px-Thiruchendur_Temple_Tower.jpg';
+  if (t.id === 'ranganathaswamy') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Srirangam_Rajagopuram.jpg/800px-Srirangam_Rajagopuram.jpg';
+  if (t.id === 'murugan_palani') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Palani_Murugan_Temple_view.jpg/800px-Palani_Murugan_Temple_view.jpg';
+  if (t.id === 'ramanathaswamy') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rameswaram_Corridor.jpg/800px-Rameswaram_Corridor.jpg';
+  if (t.id === 'nataraja_chidambaram') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chidambaram_Natarajar_Temple.jpg/800px-Chidambaram_Natarajar_Temple.jpg';
+  if (t.id === 'arunachaleswarar') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Tiruvannamalai_Temple_aerial.jpg/800px-Tiruvannamalai_Temple_aerial.jpg';
+  if (t.id === 'kapaleeshwarar') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kapaleeshwarar_Temple_Tower.jpg/800px-Kapaleeshwarar_Temple_Tower.jpg';
+  if (t.id === 'ekambareswarar') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Ekambareswarar_Temple_Gopuram.jpg/800px-Ekambareswarar_Temple_Gopuram.jpg';
+  if (t.id === 'nellaiappar') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Nellaiappar_Temple_Gopuram.jpg/800px-Nellaiappar_Temple_Gopuram.jpg';
+  if (t.galleryItems && t.galleryItems[0] && t.galleryItems[0].image) return t.galleryItems[0].image;
+  return `https://picsum.photos/seed/${t.id}/600/400`;
+}
+
+function renderTemples(temples) {
+  const grid = document.getElementById('templesGrid');
+  if (!temples.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--ivory-mute);padding:40px;">No temples found.</div>`;
+    return;
+  }
+  grid.innerHTML = temples.map(t => {
+    const imgSrc = getTempleCardImage(t);
+    const prasadamNames = (t.prasadam || []).slice(0, 2).map(p => p.name).join(', ');
+    return `
+      <div class="temple-card" data-id="${t.id}">
+        <div class="temple-select-check">✓</div>
+        <div class="temple-card-img-header" style="background-image: url('${imgSrc}')">
+          <div class="temple-card-img-overlay"></div>
+        </div>
+        <div class="temple-card-body">
+          <div class="temple-name">${t.name}</div>
+          <div class="temple-location">📍 ${t.location}</div>
+          <div class="temple-deity">🙏 ${t.deity}</div>
+          
+          <div class="temple-tags">
+            ${(t.tags || []).slice(0, 3).map(tag => `<span class="temple-tag">${tag}</span>`).join('')}
+          </div>
+
+          <div style="font-size:0.82rem; color:var(--ivory-dim); margin-bottom: 8px;">
+            🕐 <strong>Timings:</strong> ${t.timings.split('|')[0]}
+          </div>
+
+          ${prasadamNames ? `
+            <div style="font-size:0.82rem; color:var(--gold-bright); margin-bottom: 12px;">
+              🍚 <strong>Prasadam:</strong> ${prasadamNames}
+            </div>
+          ` : ''}
+
+          <div class="temple-meta">
+            <span>Entry: ${t.entryFee}</span>
+            <span style="color:var(--gold);">Select & Continue →</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Re-attach click handlers
+  grid.querySelectorAll('.temple-card').forEach(card => {
+    if (selectedTemple && card.dataset.id === selectedTemple.id) {
+      card.classList.add('selected');
+    }
+    card.addEventListener('click', () => {
+      grid.querySelectorAll('.temple-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedTemple = temples.find(t => t.id === card.dataset.id);
+      const btn = document.getElementById('goToStep2Btn');
+      btn.disabled = false;
+      document.getElementById('selectedTempleName').textContent = selectedTemple.name;
+    });
+  });
+}
+
+document.getElementById('goToStep2Btn').addEventListener('click', () => {
+  if (!selectedTemple) return;
+  // Update banner
+  document.getElementById('bannerIcon').textContent = selectedTemple.icon;
+  document.getElementById('bannerName').textContent = selectedTemple.name;
+  document.getElementById('bannerLocation').textContent = `${selectedTemple.location} · ${selectedTemple.deity}`;
+  document.getElementById('selectedTempleBanner').style.setProperty('--temple-color', selectedTemple.color);
+  gotoStep(2);
+});
+
+document.getElementById('changeTempleBtn').addEventListener('click', () => gotoStep(1));
+
+// ═══════════════════════════════════════════════
+// STEP 2 — BOOKING FORM
+// ═══════════════════════════════════════════════
+function todayStr() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+async function loadFormData() {
+  const [timingsRes, typesRes] = await Promise.all([
+    fetch('/api/timings').then(r => r.json()),
+    fetch('/api/darshan-types').then(r => r.json()),
+  ]);
+  darshanTypes = typesRes;
+
+  // Render darshan type cards
+  const dtGrid = document.getElementById('darshanTypeGrid');
+  dtGrid.innerHTML = darshanTypes.map(t => `
+    <div class="darshan-type-card${t.id === 'general' ? ' selected' : ''}" data-dt="${t.id}">
+      <div class="dt-label">${t.label.split('(')[0].trim()}</div>
+      <div class="dt-price">${t.price === 0 ? 'Free' : '₹' + t.price}</div>
+    </div>
+  `).join('');
+  dtGrid.querySelectorAll('.darshan-type-card').forEach(card => {
+    card.addEventListener('click', () => {
+      dtGrid.querySelectorAll('.darshan-type-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedDarshanType = card.dataset.dt;
+      document.getElementById('darshanType').value = selectedDarshanType;
+    });
+  });
+
+  // Date
+  const dateInput = document.getElementById('date');
+  dateInput.min = todayStr();
+  dateInput.value = todayStr();
+  dateInput.addEventListener('change', refreshAvailability);
+  refreshAvailability();
+}
+
+async function refreshAvailability() {
+  const date = document.getElementById('date').value;
+  const note = document.getElementById('availabilityNote');
+  const slotSelect = document.getElementById('slot');
+  if (!date) return;
+  note.textContent = 'Checking slot availability…';
+  try {
+    const res = await fetch(`/api/availability?date=${date}`);
+    const avail = await res.json();
+    slotSelect.innerHTML = avail.map(a => `
+      <option value="${a.label}" ${a.remaining === 0 ? 'disabled' : ''}>
+        ${a.time} — ${a.label} (${a.remaining} spots left)
+      </option>
+    `).join('');
+    note.textContent = '';
+  } catch {
+    note.textContent = '';
+  }
+}
+
+// People counter
+document.getElementById('peoplePlus').addEventListener('click', () => {
+  if (peopleCount < 10) {
+    peopleCount++;
+    document.getElementById('peopleVal').textContent = peopleCount;
+    document.getElementById('people').value = peopleCount;
+  }
+});
+document.getElementById('peopleMinus').addEventListener('click', () => {
+  if (peopleCount > 1) {
+    peopleCount--;
+    document.getElementById('peopleVal').textContent = peopleCount;
+    document.getElementById('people').value = peopleCount;
+  }
+});
+
+// ═══════════════════════════════════════════════
+// SUBMIT BOOKING
+// ═══════════════════════════════════════════════
+document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorBox = document.getElementById('formError');
+  errorBox.style.display = 'none';
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Processing…';
+
+  const payload = {
+    name: document.getElementById('name').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    date: document.getElementById('date').value,
+    slot: document.getElementById('slot').value,
+    people: document.getElementById('people').value,
+    darshanType: document.getElementById('darshanType').value,
+    templeId: selectedTemple?.id,
+    templeName: selectedTemple?.name,
+  };
+
+  try {
+    const res = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      errorBox.textContent = data.error || 'Something went wrong.';
+      errorBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="btn-icon">🎟️</span> Confirm & Book Darshan';
+      return;
+    }
+    renderTicket(data);
+    gotoStep(3);
+  } catch {
+    errorBox.textContent = 'Network error. Please try again.';
+    errorBox.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<span class="btn-icon">🎟️</span> Confirm & Book Darshan';
+  }
+});
+
+function renderTicket(booking, container) {
+  const wrap = container || document.getElementById('ticketCard');
+  const typeLbl = darshanTypes.find(t => t.id === booking.darshanType)?.label || booking.darshanType;
+  wrap.innerHTML = `
+    <div class="bk-ticket">
+      <div class="bk-ticket-header">
+        <div class="bk-ticket-temple-icon">${selectedTemple?.icon || '🛕'}</div>
+        <div>
+          <div class="bk-ticket-id">${booking.id}</div>
+          <div class="bk-ticket-temple-name">${selectedTemple?.name || ''}</div>
+        </div>
+        <div style="margin-left:auto;">
+          <span class="bk-ticket-status-confirmed">✓ Confirmed</span>
+        </div>
+      </div>
+      <div class="bk-ticket-body">
+        <div class="bk-ticket-row"><span class="bk-ticket-key">Pilgrim Name</span><span class="bk-ticket-val">${booking.name}</span></div>
+        <div class="bk-ticket-row"><span class="bk-ticket-key">Visit Date</span><span class="bk-ticket-val">${booking.date}</span></div>
+        <div class="bk-ticket-row"><span class="bk-ticket-key">Darshan Slot</span><span class="bk-ticket-val">${booking.slot}</span></div>
+        <div class="bk-ticket-row"><span class="bk-ticket-key">No. of Pilgrims</span><span class="bk-ticket-val">${booking.people}</span></div>
+        <div class="bk-ticket-row"><span class="bk-ticket-key">Darshan Type</span><span class="bk-ticket-val">${typeLbl}</span></div>
+        <div class="bk-ticket-row"><span class="bk-ticket-key">Status</span><span class="bk-ticket-val" style="color:#6FA96B;">${booking.status}</span></div>
+        ${booking.status !== 'cancelled' ? `<button class="btn btn-outline" id="cancelBtn" data-id="${booking.id}" style="margin-top:16px;width:100%;">Cancel Booking</button>` : ''}
+      </div>
+    </div>
+  `;
+  const cb = wrap.querySelector('#cancelBtn');
+  if (cb) {
+    cb.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to cancel this booking?')) return;
+      const res = await fetch(`/api/bookings/${cb.dataset.id}/cancel`, { method: 'POST' });
+      const updated = await res.json();
+      renderTicket(updated, wrap);
+    });
+  }
+}
+
+// Book another
+document.getElementById('bookAnotherBtn').addEventListener('click', () => {
+  selectedTemple = null;
+  peopleCount = 1;
+  document.getElementById('peopleVal').textContent = 1;
+  document.getElementById('people').value = 1;
+  document.getElementById('bookingForm').reset();
+  document.getElementById('goToStep2Btn').disabled = true;
+  document.getElementById('selectedTempleName').textContent = 'Select a temple first';
+  document.querySelectorAll('.temple-card').forEach(c => c.classList.remove('selected'));
+  gotoStep(1);
+});
+
+// ═══════════════════════════════════════════════
+// LOOKUP
+// ═══════════════════════════════════════════════
+document.getElementById('lookupBtn').addEventListener('click', async () => {
+  const id = document.getElementById('lookupId').value.trim();
+  const box = document.getElementById('lookupResult');
+  if (!id) return;
+  const res = await fetch(`/api/bookings/${encodeURIComponent(id)}`);
+  if (!res.ok) {
+    box.innerHTML = `<p style="color:#E48576;">No booking found for that ID.</p>`;
+    return;
+  }
+  const booking = await res.json();
+  const typeLbl = (booking.darshanType || '').charAt(0).toUpperCase() + (booking.darshanType || '').slice(1);
+  box.innerHTML = `
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:8px;">
+      <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold);margin-bottom:8px;">${booking.id}</div>
+      <div style="font-size:0.9rem;color:var(--ivory-dim);margin-bottom:4px;">Name: <strong style="color:var(--ivory);">${booking.name}</strong></div>
+      <div style="font-size:0.9rem;color:var(--ivory-dim);margin-bottom:4px;">Date: <strong style="color:var(--ivory);">${booking.date}</strong></div>
+      <div style="font-size:0.9rem;color:var(--ivory-dim);margin-bottom:4px;">Slot: <strong style="color:var(--ivory);">${booking.slot}</strong></div>
+      <div style="font-size:0.9rem;color:var(--ivory-dim);margin-bottom:4px;">People: <strong style="color:var(--ivory);">${booking.people}</strong></div>
+      <div style="font-size:0.9rem;color:var(--ivory-dim);margin-bottom:12px;">Status: <strong style="color:${booking.status === 'confirmed' ? '#6FA96B' : '#E48576'};">${booking.status}</strong></div>
+      ${booking.status !== 'cancelled' ? `<button class="btn btn-outline" onclick="cancelBooking('${booking.id}', this.closest('div').parentElement)">Cancel Booking</button>` : ''}
+    </div>
+  `;
+});
+
+async function cancelBooking(id, container) {
+  if (!confirm('Cancel this booking?')) return;
+  const res = await fetch(`/api/bookings/${id}/cancel`, { method: 'POST' });
+  const updated = await res.json();
+  container.querySelector('strong:last-of-type').textContent = updated.status;
+  container.querySelector('button')?.remove();
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+(async () => {
+  await Promise.all([loadTemples(), loadFormData()]);
+})();
+</script>
+</body>
+</html>

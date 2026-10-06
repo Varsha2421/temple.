@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Tamil Nadu Temples — Darshan Timings, Festivals, Prasadam & Booking</title>
+<meta name="description" content="Complete guide to 12 famous Tamil Nadu temples — Meenakshi, Brihadeeswarar, Ranganathaswamy, Palani, Rameswaram and more. Book darshan, view festivals, timings, prasadam, distances.">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+/* ══════════════════════════════════════
+   TEMPLES PAGE — MEGA STYLES
+   ══════════════════════════════════════ */
+
+/* Hero */
+.tp-hero{position:relative;padding:130px 0 60px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.tp-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(232,184,75,0.1) 0%,transparent 70%),linear-gradient(180deg,var(--ink-2),var(--ink))}
+.tp-hero .wrap{position:relative;z-index:1}
+.tp-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.3);border-radius:999px;padding:7px 18px;font-size:.78rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+.tp-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px;line-height:1.1}
+.tp-title span{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--saffron) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+.tp-sub{color:var(--ivory-dim);font-size:1rem;max-width:60ch;margin:0 auto;line-height:1.75}
+.tp-stat-strip{display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap}
+.tp-stat{text-align:center}
+.tp-stat-val{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--gold);display:block;line-height:1}
+.tp-stat-lbl{font-size:.72rem;color:var(--ivory-mute);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;display:block}
+
+/* Search & Filters */
+.tp-controls{padding:40px 0 20px;position:sticky;top:56px;z-index:50;background:rgba(13,10,7,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.tp-search-wrap{max-width:540px;margin:0 auto 20px;position:relative}
+.tp-search{width:100%;background:var(--surface);border:1px solid var(--border-2);color:var(--ivory);padding:13px 18px 13px 44px;border-radius:var(--radius-lg);font-size:.95rem;font-family:var(--sans);margin:0;transition:border-color .2s}
+.tp-search:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,75,0.12);outline:none}
+.tp-search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem;color:var(--ivory-mute);pointer-events:none}
+.tp-filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.tp-filter{background:var(--surface);border:1px solid var(--border);color:var(--ivory-dim);border-radius:999px;padding:7px 18px;font-size:.84rem;font-family:var(--sans);cursor:pointer;transition:all .2s;font-weight:500;border:1px solid var(--border)}
+.tp-filter:hover,.tp-filter.active{background:linear-gradient(135deg,var(--gold),var(--gold-bright));border-color:var(--gold);color:var(--ink);font-weight:700}
+.tp-count{text-align:center;color:var(--ivory-mute);font-size:.84rem;margin-top:14px;letter-spacing:.04em}
+
+/* Temple Cards */
+.tp-list{display:flex;flex-direction:column;gap:28px;padding:40px 0 60px}
+.tc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .35s}
+.tc:hover{border-color:var(--border-2);box-shadow:0 20px 60px rgba(0,0,0,0.45)}
+
+/* Card Header with gradient */
+.tc-header{position:relative;padding:28px 32px 20px;overflow:hidden}
+.tc-header-bg{position:absolute;inset:0;opacity:.18}
+.tc-header-content{position:relative;z-index:1;display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.tc-icon-box{width:64px;height:64px;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0}
+.tc-info{flex:1;min-width:220px}
+.tc-name{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--ivory);margin-bottom:4px;line-height:1.3}
+.tc-name-ta{font-size:.78rem;color:var(--ivory-dim);margin-bottom:6px;opacity:.8}
+.tc-location{font-size:.82rem;color:var(--gold);display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.tc-deity{font-size:.84rem;color:var(--ivory-dim);padding:5px 12px;background:rgba(255,255,255,0.06);border-radius:999px;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,0.08)}
+.tc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tc-tag{font-size:.68rem;padding:3px 10px;border-radius:999px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.25);color:var(--gold);letter-spacing:.04em;font-weight:500}
+.tc-quick-stats{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.tc-qs{text-align:center;padding:8px 14px;background:rgba(0,0,0,0.2);backdrop-filter:blur(4px);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.06);min-width:100px}
+.tc-qs-val{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--gold);display:block}
+.tc-qs-lbl{font-size:.68rem;color:var(--ivory-mute);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;display:block}
+.tc-actions-top{display:flex;gap:10px;margin-top:16px}
+
+/* Description */
+.tc-desc{padding:0 32px;margin-top:0}
+.tc-desc p{color:var(--ivory-dim);font-size:.92rem;line-height:1.8;padding:16px 0;border-bottom:1px solid var(--border)}
+
+/* Expandable Sections */
+.tc-sections{padding:0 32px 28px}
+.tc-section{border:1px solid var(--border);border-radius:var(--radius);margin-top:14px;overflow:hidden;transition:all .3s}
+.tc-section.open{border-color:var(--border-2)}
+.tc-section-header{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ivory);background:var(--ink-2);transition:background .2s;user-select:none}
+.tc-section-header:hover{background:var(--surface-2)}
+.tc-section-header .tc-section-icon{font-size:1.1rem}
+.tc-section-header .tc-chevron{margin-left:auto;transition:transform .3s;font-size:.7rem;color:var(--ivory-mute)}
+.tc-section.open .tc-chevron{transform:rotate(180deg)}
+.tc-section-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.tc-section.open .tc-section-body{max-height:2000px}
+.tc-section-inner{padding:18px}
+
+/* Timings table */
+.tc-timings-grid{display:grid;gap:6px}
+.tc-timing-row{display:flex;justify-content:space-between;padding:8px 14px;border-radius:var(--radius);background:var(--ink-2);font-size:.86rem}
+.tc-timing-time{color:var(--gold);font-weight:600;font-variant-numeric:tabular-nums;min-width:80px}
+.tc-timing-event{color:var(--ivory-dim);text-align:right}
+
+/* Festivals */
+.tc-fest-grid{display:grid;gap:12px}
+.tc-fest{display:flex;gap:14px;padding:14px;background:var(--ink-2);border-radius:var(--radius);border:1px solid var(--border)}
+.tc-fest-icon{font-size:1.6rem;flex-shrink:0;width:44px;height:44px;background:rgba(232,184,75,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tc-fest-info{flex:1}
+.tc-fest-name{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--ivory);margin-bottom:2px}
+.tc-fest-month{font-size:.76rem;color:var(--gold);letter-spacing:.06em;margin-bottom:6px}
+.tc-fest-desc{font-size:.82rem;color:var(--ivory-dim);line-height:1.6}
+
+/* Prasadam */
+.tc-prasad-grid{display:grid;gap:10px}
+.tc-prasad{padding:14px;background:var(--ink-2);border-radius:var(--radius);border-left:3px solid var(--gold)}
+.tc-prasad-name{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.tc-prasad-desc{font-size:.82rem;color:var(--ivory-dim);line-height:1.6}
+
+/* Distance */
+.tc-dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tc-dist-item{padding:12px 14px;background:var(--ink-2);border-radius:var(--radius);border:1px solid var(--border)}
+.tc-dist-label{font-size:.72rem;color:var(--ivory-mute);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.tc-dist-val{font-size:.84rem;color:var(--ivory);font-weight:500}
+
+/* Gallery */
+.tc-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.tc-gallery-item{aspect-ratio:4/3;border-radius:var(--radius);border:1px solid var(--border);display:flex;align-items:flex-end;padding:10px;font-family:var(--serif);font-size:.82rem;color:var(--ivory);background-size:cover;background-position:center;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.tc-gallery-item:hover{transform:scale(1.04);box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+.tc-gallery-item span{background:rgba(13,10,7,0.7);padding:3px 8px;border-radius:4px;font-size:.78rem}
+
+/* Book CTA */
+.tc-book-cta{padding:0 32px 28px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* Language dropdown */
+.lang-dropdown-wrap{position:relative}
+.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius);box-shadow:0 16px 48px rgba(0,0,0,0.6);z-index:200;min-width:180px;padding:6px;display:none}
+.lang-dropdown.open{display:block}
+.lang-option{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;color:var(--ivory-dim);font-family:var(--sans);font-size:.88rem;padding:10px 14px;border-radius:var(--radius);cursor:pointer;transition:all .15s;text-align:left}
+.lang-option:hover{background:var(--surface-2);color:var(--ivory)}
+.lang-option.active{background:rgba(232,184,75,0.12);color:var(--gold);font-weight:600}
+.lang-flag{font-size:1.1rem}
+
+/* CTA Bottom Banner */
+.tp-cta{text-align:center;padding:80px 0;background:var(--ink-2);border-top:1px solid var(--border)}
+.tp-cta h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;margin-bottom:14px;letter-spacing:.04em}
+.tp-cta p{color:var(--ivory-dim);font-size:1rem;margin-bottom:32px;max-width:50ch;margin-left:auto;margin-right:auto}
+
+footer.tp-footer{padding:40px 0;text-align:center;color:var(--ivory-mute);font-size:.85rem;border-top:1px solid var(--border)}
+
+/* Responsive */
+@media(max-width:768px){
+  .tc-header-content{flex-direction:column}
+  .tc-quick-stats{margin-left:0;justify-content:flex-start}
+  .tc-dist-grid{grid-template-columns:1fr}
+  .tc-gallery-grid{grid-template-columns:1fr 1fr}
+  .tc-sections,.tc-desc,.tc-book-cta{padding-left:18px;padding-right:18px}
+  .tc-header{padding:20px 18px 16px}
+  .tp-stat-strip{gap:16px}
+}
+@media(max-width:480px){
+  .tc-gallery-grid{grid-template-columns:1fr}
+  .tc-book-cta{flex-direction:column}
+  .tc-book-cta .btn{justify-content:center;width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span style="font-size:1.5rem;filter:drop-shadow(0 0 8px var(--gold));">🛕</span>
+      <span style="font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--ivory);letter-spacing:.06em;text-transform:uppercase;">TN Temples</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" data-i18n="nav_home">Home</a></li>
+      <li><a href="/temples.html" class="active" data-i18n="nav_temples">All Temples</a></li>
+      <li><a href="/history.html" data-i18n="nav_history">History</a></li>
+      <li><a href="/gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="/booking.html" class="nav-book-btn" data-i18n="nav_booking">Book Darshan</a></li>
+      <li><button class="lang-toggle" id="langToggle">🇬🇧 English</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="tp-hero">
+  <div class="tp-hero-bg"></div>
+  <div class="wrap">
+    <div class="tp-eyebrow">🛕 Tamil Nadu • India</div>
+    <h1 class="tp-title" data-i18n="tp_title">Explore All <span>Tamil Nadu Temples</span></h1>
+    <p class="tp-sub" data-i18n="tp_sub">Complete guide to 12 sacred temples — darshan timings, famous festivals, prasadam, distances, gallery and online booking for pilgrims & tourists worldwide.</p>
+    <div class="tp-stat-strip">
+      <div class="tp-stat"><span class="tp-stat-val" id="templeCountStat">12</span><span class="tp-stat-lbl">Sacred Temples</span></div>
+      <div class="tp-stat"><span class="tp-stat-val">9</span><span class="tp-stat-lbl">Languages</span></div>
+      <div class="tp-stat"><span class="tp-stat-val">365+</span><span class="tp-stat-lbl">Festivals/Year</span></div>
+      <div class="tp-stat"><span class="tp-stat-val">50M+</span><span class="tp-stat-lbl">Annual Visitors</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH & FILTERS -->
+<div class="tp-controls" id="tpControls">
+  <div class="wrap">
+    <div class="tp-search-wrap">
+      <span class="tp-search-icon">🔍</span>
+      <input class="tp-search" id="tpSearch" type="text" placeholder="Search temples by name, location, deity or tag…" data-i18n-placeholder="tp_search">
+    </div>
+    <div class="tp-filters" id="tpFilters">
+      <button class="tp-filter active" data-filter="all" data-i18n="tp_tab_all">All Temples</button>
+      <button class="tp-filter" data-filter="Shiva" data-i18n="tp_tab_shiva">🔱 Shiva</button>
+      <button class="tp-filter" data-filter="Vishnu" data-i18n="tp_tab_vishnu">🙏 Vishnu</button>
+      <button class="tp-filter" data-filter="Murugan" data-i18n="tp_tab_murugan">🌿 Murugan</button>
+      <button class="tp-filter" data-filter="Shakti" data-i18n="tp_tab_shakti">🌸 Shakti</button>
+    </div>
+    <div class="tp-count" id="tpCount">Showing 12 temples</div>
+  </div>
+</div>
+
+<!-- TEMPLE LIST -->
+<div class="wrap">
+  <div class="tp-list" id="tpList">
+    <div style="text-align:center;padding:80px 0;color:var(--ivory-mute);">Loading temples…</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="tp-cta">
+  <div class="wrap">
+    <div style="font-size:2.5rem;margin-bottom:14px;">🙏</div>
+    <h2>Ready to Begin Your Pilgrimage?</h2>
+    <p>Select any temple above and book your darshan slot online. Fast, easy, and available in 9 languages.</p>
+    <a href="/booking.html" class="btn btn-primary btn-large"><span class="btn-icon">🎟️</span> Book Your Darshan Now</a>
+  </div>
+</section>
+
+<footer class="tp-footer">
+  <div class="wrap">🛕 Tamil Nadu Temple Portal — Serving Pilgrims with Divine Ease • 9 Languages Supported</div>
+</footer>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   TEMPLES PAGE LOGIC
+   ═══════════════════════════════════════════ */
+
+let allTemples = [];
+let activeFilter = 'all';
+let searchQuery = '';
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Stars helper
+function stars(r) {
+  return Array.from({length:5},(_,i) => `<span style="color:${i<r?'var(--gold)':'var(--border-2)'};font-size:.8rem;">★</span>`).join('');
+}
+
+// Build a single temple card HTML
+function buildTempleCard(tp) {
+  const distEntries = tp.distance ? Object.entries(tp.distance) : [];
+  const distLabels = { chennai:'From Chennai', madurai:'From Madurai', coimbatore:'From Coimbatore', airport:'Nearest Airport', railway:'Nearest Railway', pondicherry:'From Pondicherry', bangalore:'From Bangalore' };
+
+  return `
+<div class="tc" data-id="${tp.id}" data-deity='${JSON.stringify(tp.deityType)}'>
+  <!-- HEADER -->
+  <div class="tc-header">
+    <div class="tc-header-bg" style="background:${tp.gradient}"></div>
+    <div class="tc-header-content">
+      <div class="tc-icon-box">${tp.icon}</div>
+      <div class="tc-info">
+        <div class="tc-name">${tp.name}</div>
+        ${tp.nameTa ? `<div class="tc-name-ta">${tp.nameTa}</div>` : ''}
+        <div class="tc-location">📍 ${tp.location}</div>
+        <div class="tc-deity">🙏 ${tp.deity}</div>
+        <div class="tc-tags">${tp.tags.map(t=>`<span class="tc-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="tc-quick-stats">
+        <div class="tc-qs"><span class="tc-qs-val">${tp.established}</span><span class="tc-qs-lbl">Established</span></div>
+        <div class="tc-qs"><span class="tc-qs-val">${tp.entryFee.split('(')[0].trim()}</span><span class="tc-qs-lbl">Entry Fee</span></div>
+        <div class="tc-qs"><span class="tc-qs-val">${stars(tp.rating)}</span><span class="tc-qs-lbl">Rating</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="tc-desc"><p>${tp.description}</p></div>
+
+  <!-- EXPANDABLE SECTIONS -->
+  <div class="tc-sections">
+
+    <!-- DARSHAN TIMINGS -->
+    <div class="tc-section" data-section="timings">
+      <div class="tc-section-header">
+        <span class="tc-section-icon">🕐</span> <span data-i18n="tp_timings">Darshan Timings</span> <span style="margin-left:8px;font-weight:400;font-size:.8rem;color:var(--ivory-mute);">${tp.timings}</span>
+        <span class="tc-chevron">▼</span>
+      </div>
+      <div class="tc-section-body"><div class="tc-section-inner">
+        <div class="tc-timings-grid">
+          ${(tp.darshanaTimings||[]).map(dt => `
+            <div class="tc-timing-row">
+              <span class="tc-timing-time">${dt.time}</span>
+              <span class="tc-timing-event">${dt.ritual}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div></div>
+    </div>
+
+    <!-- FESTIVALS -->
+    <div class="tc-section" data-section="festivals">
+      <div class="tc-section-header">
+        <span class="tc-section-icon">🎊</span> <span data-i18n="tp_festivals">Famous Festivals</span> <span style="margin-left:8px;font-weight:400;font-size:.8rem;color:var(--ivory-mute);">(${(tp.festivals||[]).length})</span>
+        <span class="tc-chevron">▼</span>
+      </div>
+      <div class="tc-section-body"><div class="tc-section-inner">
+        <div class="tc-fest-grid">
+          ${(tp.festivals||[]).map(f => `
+            <div class="tc-fest">
+              <div class="tc-fest-icon">${f.icon || '🎉'}</div>
+              <div class="tc-fest-info">
+                <div class="tc-fest-name">${f.name}</div>
+                <div class="tc-fest-month">📅 ${f.month}</div>
+                <div class="tc-fest-desc">${f.description}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div></div>
+    </div>
+
+    <!-- PRASADAM -->
+    <div class="tc-section" data-section="prasadam">
+      <div class="tc-section-header">
+        <span class="tc-section-icon">🍚</span> <span data-i18n="tp_prasadam">Famous Prasadam</span>
+        <span class="tc-chevron">▼</span>
+      </div>
+      <div class="tc-section-body"><div class="tc-section-inner">
+        <div class="tc-prasad-grid">
+          ${(tp.prasadam||[]).map(p => `
+            <div class="tc-prasad">
+              <div class="tc-prasad-name">${p.icon || '🪔'} ${p.name}</div>
+              <div class="tc-prasad-desc" style="margin-bottom: 6px;">${p.description}</div>
+              ${p.ingredients ? `<div style="font-size:0.75rem; color:var(--ivory-mute);"><span style="color:var(--gold);">Ingredients:</span> ${p.ingredients}</div>` : ''}
+              ${p.speciality ? `<div style="font-size:0.75rem; margin-top: 4px; display:inline-block; padding: 2px 8px; background: rgba(232,184,75,0.1); border: 1px solid rgba(232,184,75,0.2); border-radius: 999px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em;">${p.speciality}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div></div>
+    </div>
+
+    <!-- DISTANCE -->
+    <div class="tc-section" data-section="distance">
+      <div class="tc-section-header">
+        <span class="tc-section-icon">📍</span> <span data-i18n="tp_distance">Distance & How to Reach</span>
+        <span class="tc-chevron">▼</span>
+      </div>
+      <div class="tc-section-body"><div class="tc-section-inner">
+        <div class="tc-dist-grid">
+          ${distEntries.map(([k,v]) => `
+            <div class="tc-dist-item">
+              <div class="tc-dist-label">${distLabels[k] || k}</div>
+              <div class="tc-dist-val">${v}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div></div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="tc-section" data-section="gallery">
+      <div class="tc-section-header">
+        <span class="tc-section-icon">📸</span> <span data-i18n="tp_gallery">Gallery</span>
+        <span class="tc-chevron">▼</span>
+      </div>
+      <div class="tc-section-body"><div class="tc-section-inner">
+        <div class="tc-gallery-grid">
+          ${(tp.galleryItems||[]).map((g, idx) => `
+            <div class="tc-gallery-item ${g.image ? '' : 'wiki-img'}" data-wiki-query="${tp.keywords[0]} temple" data-idx="${idx}" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 80%), url('${g.image || ''}')">
+              <span>${g.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- BOOK CTA -->
+  <div class="tc-book-cta">
+    <a href="/booking.html?temple=${tp.id}" class="btn btn-primary" data-i18n="tp_book_now"><span class="btn-icon">🎟️</span> Book Darshan at This Temple</a>
+    <button class="btn btn-glass tc-expand-all-btn" data-temple="${tp.id}"><span class="btn-icon">📋</span> Expand All Sections</button>
+  </div>
+</div>`;
+}
+
+// Map to cache wiki image URLs so we don't spam the API
+const wikiImageCache = {};
+
+async function loadWikiImagesForSection(container) {
+  const elements = Array.from((container || document).querySelectorAll('.tc-gallery-item.wiki-img'));
+  if (!elements.length) return;
+
+  const templeGroups = {};
+  elements.forEach(el => {
+    if (el.style.backgroundImage && (el.style.backgroundImage.includes('url("http') || el.style.backgroundImage.includes('url(\'http') || el.style.backgroundImage.includes('url("/img') || el.style.backgroundImage.includes('url(\'/img'))) {
+      if (!el.style.backgroundImage.includes('picsum')) {
+        el.classList.remove('wiki-img');
+        return; 
+      }
+    }
+    const query = el.dataset.wikiQuery;
+    if (!templeGroups[query]) templeGroups[query] = [];
+    templeGroups[query].push(el);
+  });
+
+  const promises = Object.entries(templeGroups).map(async ([query, elements]) => {
+    try {
+      let urls = wikiImageCache[query];
+      
+      // Fetch from Wikimedia Commons API if not in cache
+      if (!urls) {
+        const apiUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrnamespace=6&gsrlimit=6&prop=imageinfo&iiprop=url&format=json&origin=*`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        
+        urls = [];
+        if (data.query && data.query.pages) {
+          urls = Object.values(data.query.pages)
+            .map(p => p.imageinfo && p.imageinfo[0] ? p.imageinfo[0].url : null)
+            .filter(Boolean)
+            .filter(url => url.toLowerCase().endsWith('.jpg') || url.toLowerCase().endsWith('.png'));
+        }
+        wikiImageCache[query] = urls;
+      }
+      
+      // Assign the fetched real images to the gallery items
+      elements.forEach((el, index) => {
+        const imgUrl = urls[index % urls.length];
+        if (imgUrl) {
+          el.style.backgroundImage = `linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 80%), url('${imgUrl}')`;
+          el.classList.remove('wiki-img'); // mark as loaded
+        }
+      });
+    } catch (err) {
+      console.warn('Failed to fetch wiki images for', query, err);
+    }
+  });
+
+  await Promise.allSettled(promises);
+}
+
+// Render filtered temples
+function renderTemples() {
+  const list = document.getElementById('tpList');
+  let filtered = allTemples;
+
+  // Filter by deity type
+  if (activeFilter !== 'all') {
+    filtered = filtered.filter(t => t.deityType && t.deityType.includes(activeFilter));
+  }
+
+  // Filter by search
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(t =>
+      t.name.toLowerCase().includes(q) ||
+      (t.nameTa && t.nameTa.includes(q)) ||
+      (t.keywords && t.keywords.some(k => k.toLowerCase().includes(q))) ||
+      t.location.toLowerCase().includes(q) ||
+      t.deity.toLowerCase().includes(q) ||
+      t.description.toLowerCase().includes(q) ||
+      (t.tags && t.tags.some(tag => tag.toLowerCase().includes(q))) ||
+      (t.prasadam && t.prasadam.some(p => p.name.toLowerCase().includes(q))) ||
+      (t.festivals && t.festivals.some(f => f.name.toLowerCase().includes(q)))
+    );
+  }
+
+  document.getElementById('tpCount').textContent = `Showing ${filtered.length} temple${filtered.length !== 1 ? 's' : ''}`;
+  document.getElementById('templeCountStat').textContent = allTemples.length;
+
+  if (!filtered.length) {
+    list.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--ivory-mute);font-size:1.1rem;">No temples match your search.</div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(buildTempleCard).join('');
+  attachSectionToggle();
+  attachExpandAll();
+
+  // Scroll-reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  list.querySelectorAll('.tc').forEach((card, i) => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(25px)';
+    card.style.transition = `opacity .5s ease ${i*0.06}s, transform .5s ease ${i*0.06}s`;
+    obs.observe(card);
+  });
+}
+
+// Toggle sections & lazy load gallery images when section is expanded
+function attachSectionToggle() {
+  document.querySelectorAll('.tc-section-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const section = header.parentElement;
+      section.classList.toggle('open');
+      if (section.dataset.section === 'gallery' && section.classList.contains('open')) {
+        loadWikiImagesForSection(section);
+      }
+    });
+  });
+}
+
+// Expand all sections in a temple
+function attachExpandAll() {
+  document.querySelectorAll('.tc-expand-all-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.tc');
+      const sections = card.querySelectorAll('.tc-section');
+      const allOpen = Array.from(sections).every(s => s.classList.contains('open'));
+      sections.forEach(s => {
+        if (allOpen) {
+          s.classList.remove('open');
+        } else {
+          s.classList.add('open');
+          if (s.dataset.section === 'gallery') {
+            loadWikiImagesForSection(s);
+          }
+        }
+      });
+      btn.querySelector('.btn-icon').textContent = allOpen ? '📋' : '📕';
+    });
+  });
+}
+
+// Filters
+document.getElementById('tpFilters').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tp-filter');
+  if (!btn) return;
+  document.querySelectorAll('.tp-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  renderTemples();
+});
+
+// Debounced Search (instant UI feedback without lag)
+let searchTimeout;
+document.getElementById('tpSearch').addEventListener('input', (e) => {
+  clearTimeout(searchTimeout);
+  searchQuery = e.target.value.trim();
+  searchTimeout = setTimeout(() => {
+    renderTemples();
+  }, 100);
+});
+
+// Load data
+(async () => {
+  try {
+    const res = await fetch('/api/temples');
+    allTemples = await res.json();
+    renderTemples();
+  } catch (err) {
+    document.getElementById('tpList').innerHTML = `<div style="color:#E48576;text-align:center;padding:40px;">Failed to load temples. Try refreshing.</div>`;
+  }
+})();
+</script>
+</body>
+</html>

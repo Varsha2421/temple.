@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timings — Sri Temple</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="/" class="brand">Sri Temple</a>
+    <ul class="nav-links">
+      <li><a href="/" data-i18n="nav_home">Home</a></li>
+      <li><a href="/history.html" data-i18n="nav_history">History</a></li>
+      <li><a href="/timings.html" class="active" data-i18n="nav_timings">Timings</a></li>
+      <li><a href="/gallery.html" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="/booking.html" data-i18n="nav_booking">Book Darshan</a></li>
+      <li><button class="lang-toggle" id="langToggle">தமிழ்</button></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="block" style="padding-top:48px;">
+  <div class="wrap">
+    <div id="statusPill" class="status-pill"><span class="status-dot"></span> &nbsp;</div>
+    <h2 class="section-title" data-i18n="timings_title">Pooja &amp; Darshan Timings</h2>
+    <p class="section-sub" data-i18n="timings_sub">Daily ritual schedule and darshan windows. For foreign and out-of-town visitors: darshan slots need a booking; the daily pooja schedule below is open to all devotees.</p>
+
+    <h3 style="font-family:var(--serif); font-weight:600; margin-bottom:14px;" data-i18n="timings_daily_heading">Daily Pooja Schedule</h3>
+    <div class="notice-board" id="dailySchedule"></div>
+
+    <h3 style="font-family:var(--serif); font-weight:600; margin:36px 0 14px;" data-i18n="timings_slots_heading">Darshan Slots (bookable)</h3>
+    <div class="slot-grid" id="slotGrid"></div>
+
+    <div style="margin-top:32px;">
+      <a href="/booking.html" class="btn" data-i18n="hero_cta_book">Book Darshan</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Sri Temple — sample heritage &amp; darshan-booking project.</div>
+</footer>
+
+<script src="/js/i18n.js"></script>
+<script src="/js/app.js"></script>
+<script>
+  async function loadTimings() {
+    const res = await fetch('/api/timings');
+    const { dailySchedule, darshanSlots } = await res.json();
+
+    document.getElementById('dailySchedule').innerHTML = dailySchedule.map(e => `
+      <div class="notice-row">
+        <span class="notice-time">${e.time}</span>
+        <span class="notice-event">${e.event}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('slotGrid').innerHTML = darshanSlots.map(s => `
+      <div class="slot-card">
+        <div class="slot-time">${s.time}</div>
+        <p class="slot-label">${s.label}</p>
+      </div>
+    `).join('');
+  }
+  loadTimings();
+</script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temple History & Origins — Tamil Nadu Sacred Shrines</title>
+<meta name="description" content="Discover who built Tamil Nadu's sacred temples and how they came to be. Search any temple to explore origin myths, Chola, Pandya, Pallava history, and real photos.">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* History Search Bar */
+.hist-search-box {
+  max-width: 680px;
+  margin: -35px auto 40px;
+  position: relative;
+  z-index: 10;
+}
+.hist-search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 2px solid var(--gold-dim);
+  color: var(--ivory);
+  padding: 16px 20px 16px 54px;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  font-family: var(--sans);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+.hist-search-input:focus {
+  border-color: var(--gold-bright);
+  box-shadow: 0 12px 40px rgba(232,184,75,0.25);
+  outline: none;
+}
+.hist-search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+
+.hist-temple-picker {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 36px;
+  scroll-behavior: smooth;
+}
+.hist-temple-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--ivory-dim);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.hist-temple-chip:hover, .hist-temple-chip.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  color: var(--ink);
+  border-color: var(--gold);
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(232,184,75,0.3);
+}
+
+/* Temple History Card Layout */
+.hist-detail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.hist-detail-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 32px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.hist-detail-img-wrap {
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 320px;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+.hist-detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hist-meta-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.hist-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,184,75,0.12);
+  border: 1px solid rgba(232,184,75,0.3);
+  color: var(--gold);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+}
+.hist-detail-title {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: var(--ivory);
+  line-height: 1.2;
+}
+.hist-builder-tag {
+  color: var(--gold-bright);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.hist-builder-tag span {
+  color: var(--ivory-dim);
+  font-weight: 400;
+}
+
+.hist-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 36px;
+}
+.hist-story-box {
+  background: var(--ink-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.hist-story-box h4 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hist-story-box p {
+  color: var(--ivory-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 860px) {
+  .hist-detail-header { grid-template-columns: 1fr; }
+  .hist-story-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="brand">
+      <span class="brand-om">🕉</span>
+      <span class="brand-text">TN TEMPLES</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/temples.html">All Temples</a></li>
+      <li><a href="/history.html" class="active">History & Origins</a></li>
+      <li><a href="/gallery.html">Gallery</a></li>
+      <li><a href="/booking.html" class="nav-book-btn">🎟 Book Darshan</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" style="min-height:42vh; padding-top: 120px; text-align: center;">
+  <div class="hero-bg">
+    <img src="/img/meenakshi_gopuram.png" alt="Tamil Nadu Temple Architecture" class="hero-img">
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="wrap" style="position:relative; z-index:2;">
+    <p class="hero-eyebrow animate-slide-up delay-1">✦ Who Built It & How It Came To Be ✦</p>
+    <h1 class="hero-title animate-slide-up delay-2" style="font-size: clamp(2.2rem, 5vw, 3.8rem);">
+      History & Origins of <span class="hero-title-accent">Tamil Nadu Temples</span>
+    </h1>
+    <p class="hero-desc animate-slide-up delay-3" style="margin: 0 auto; max-width: 680px;">
+      Search any sacred temple to uncover who built it, the ancient royal dynasties (Chola, Pandya, Pallava, Vijayanagara), origin legends, and authentic pictures.
+    </p>
+  </div>
+</header>
+
+<!-- MAIN CONTENT CONTAINER -->
+<div class="wrap">
+
+  <!-- SEARCH BAR -->
+  <div class="hist-search-box">
+    <span class="hist-search-icon">🔍</span>
+    <input type="text" id="histSearchInput" class="hist-search-input" placeholder="Search temple history (e.g. Thiruchendur, Meenakshi, Brihadeeswarar, Srirangam)...">
+  </div>
+
+  <!-- QUICK CHIPS -->
+  <div class="hist-temple-picker" id="histChips">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- DISPLAY SELECTED TEMPLE HISTORY -->
+  <div id="histDisplay">
+    <!-- Populated by JS -->
+  </div>
+
+</div>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-bg"></div>
+  <div class="wrap cta-content">
+    <h2>Experience 2,000 Years of Living Tradition</h2>
+    <p>Pre-book your darshan slot and witness the architectural marvels of Tamil Nadu in person.</p>
+    <a href="/booking.html" class="btn btn-primary btn-large">🎟️ Book Your Darshan Slot</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <p>© 2026 Tamil Nadu Temples & Cultural Heritage. Preserving Chola, Pandya & Pallava History.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/app.js"></script>
+<script>
+let allTemplesData = [];
+let activeTempleId = 'meenakshi';
+
+// Extra detailed origin & builder history for temples
+const HISTORICAL_DETAILS = {
+  meenakshi: {
+    builtBy: 'King Kulasekara Pandya (6th Century CE) & Expanded by Nayak Dynasty (16th–17th Century CE)',
+    originStory: 'Legend states Lord Indra discovered the sacred Shivalingam under a kadamba tree in Madurai and built the first shrine. Later, Goddess Meenakshi (an avatar of Shakti) was born with three breasts to King Malayadwaja Pandya and ruled Madurai until marrying Lord Sundareswarar.',
+    architecture: 'Dravidian masterpiece featuring 14 towering gopurams encrusted with 33,000 painted sculptures and the 1000-Pillared Hall.',
+    image: '/img/meenakshi_gopuram.png'
+  },
+  brihadeeswarar: {
+    builtBy: 'Raja Raja Chola I (1010 CE — Chola Empire)',
+    originStory: 'Emperor Raja Raja Chola I had a divine vision after his military victories and commissioned the grandest granite temple ever constructed. Built in just 7 years using over 130,000 tons of granite without binding mortar.',
+    architecture: 'UNESCO World Heritage Site. The 66-meter vimana casts no shadow at noon; crowned by a single 80-ton granite capstone.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Brihadeeswarar_Temple_Thanjavur.jpg/800px-Brihadeeswarar_Temple_Thanjavur.jpg'
+  },
+  thiruchendur: {
+    builtBy: 'Ancient Pandya Kings & Expanded by Thirumalai Nayak (17th Century)',
+    originStory: 'According to Skanda Puranam, Thiruchendur is the exact seashore battleground where Lord Murugan defeated the demon king Soorapadman. After victory, Murugan worshipped Lord Shiva here and established the seaside shrine.',
+    architecture: 'Located directly on the Bay of Bengal shore. Features a massive 9-tiered, 137-foot entrance tower (Rajagopuram) built right by the waves.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Thiruchendur_Temple_Tower.jpg/800px-Thiruchendur_Temple_Tower.jpg'
+  },
+  ranganathaswamy: {
+    builtBy: 'Chola, Pandya, Hoysala & Vijayanagara Rulers (1st–17th Century CE)',
+    originStory: 'Lord Rama presented the idol of Ranganatha to Vibhishana after defeating Ravana. On his way to Sri Lanka, Vibhishana placed the idol on the banks of River Cauvery at Srirangam. The idol became permanently rooted there as desired by Lord Ranganatha.',
+    architecture: 'World\'s largest functioning Hindu temple complex spanning 156 acres with 21 grand gopurams and 7 concentric stone enclosures.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Srirangam_Rajagopuram.jpg/800px-Srirangam_Rajagopuram.jpg'
+  },
+  palani: {
+    builtBy: 'King Cheraman Perumal (7th Century CE) & Sage Bhogar',
+    originStory: 'Lord Murugan retreated to Palani hill in a divine fury after his brother Ganesha received the Fruit of Wisdom (*Jnana Pazham*). Sage Bhogar crafted the idol using *Navapashanam* — nine secret medicinal herbs.',
+    architecture: 'Sacred hilltop shrine accessible via 693 stone steps, rope car, or winch, offering panoramic views of the Western Ghats.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Palani_Murugan_Temple_view.jpg/800px-Palani_Murugan_Temple_view.jpg'
+  },
+  rameswaram: {
+    builtBy: 'Sethupathi Maravar Kings of Ramanathapuram (12th Century CE)',
+    originStory: 'After defeating Ravana in Sri Lanka, Lord Rama worshipped Lord Shiva here to cleanse the sin of killing Ravana. Goddess Sita sculpted the Lingam from sea sand (*Ramalingam*), which remains the main deity.',
+    architecture: 'Famous for the longest pillared stone corridor in the world (1,220 meters) and 22 sacred bathing wells (*Teerthams*).',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rameswaram_Corridor.jpg/800px-Rameswaram_Corridor.jpg'
+  }
+};
+
+async function initHistory() {
+  try {
+    const res = await fetch('/api/temples');
+    allTemplesData = await res.json();
+    renderChips();
+    selectTemple(allTemplesData[0].id);
+  } catch (err) {
+    console.error('Failed to load temples:', err);
+  }
+}
+
+function renderChips() {
+  const chipsContainer = document.getElementById('histChips');
+  chipsContainer.innerHTML = allTemplesData.map(t => `
+    <button class="hist-temple-chip ${t.id === activeTempleId ? 'active' : ''}" onclick="selectTemple('${t.id}')">
+      ${t.icon || '🛕'} ${t.name.split(' ')[0]}
+    </button>
+  `).join('');
+}
+
+function selectTemple(id) {
+  activeTempleId = id;
+  renderChips();
+  const temple = allTemplesData.find(t => t.id === id) || allTemplesData[0];
+  const detail = HISTORICAL_DETAILS[id] || {
+    builtBy: `Ancient Dravidian Monarchs (${temple.established || 'Ancient Era'})`,
+    originStory: temple.description,
+    architecture: `${temple.tags ? temple.tags.join(', ') : 'Dravidian Architecture'}`,
+    image: temple.galleryItems && temple.galleryItems[0] && temple.galleryItems[0].image ? temple.galleryItems[0].image : `https://picsum.photos/seed/${id}/800/500`
+  };
+
+  const display = document.getElementById('histDisplay');
+  display.innerHTML = `
+    <div class="hist-detail-card">
+      <div class="hist-detail-header">
+        <div class="hist-detail-img-wrap">
+          <img src="${detail.image}" alt="${temple.name}" class="hist-detail-img" onerror="this.src='https://picsum.photos/seed/${id}/800/500'">
+        </div>
+        <div class="hist-meta-box">
+          <span class="hist-meta-badge">📍 ${temple.location} · Established ${temple.established}</span>
+          <h2 class="hist-detail-title">${temple.name}</h2>
+          <div class="hist-builder-tag">
+            👑 Built By: <span>${detail.builtBy}</span>
+          </div>
+          <p style="color:var(--ivory-dim); font-size:0.95rem; margin-top:8px;">
+            ${temple.description}
+          </p>
+        </div>
+      </div>
+
+      <div class="hist-story-grid">
+        <div class="hist-story-box">
+          <h4>📜 How It Came To Be (Sacred Origin Legend)</h4>
+          <p>${detail.originStory}</p>
+        </div>
+
+        <div class="hist-story-box">
+          <h4>🏛️ Architectural Marvel & Heritage</h4>
+          <p>${detail.architecture}</p>
+          <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-2);">
+            <strong style="color:var(--gold); font-size:0.85rem; text-transform:uppercase;">Key Highlights:</strong>
+            <p style="margin-top: 4px; font-size: 0.88rem; color:var(--ivory-dim);">
+              • Presiding Deity: ${temple.deity}<br>
+              • Region: ${temple.region}<br>
+              • Entry Fee: ${temple.entryFee}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Search input listener
+document.getElementById('histSearchInput').addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase().trim();
+  if (!query) return;
+  const match = allTemplesData.find(t =>
+    t.name.toLowerCase().includes(query) ||
+    t.location.toLowerCase().includes(query) ||
+    (t.keywords && t.keywords.some(k => k.toLowerCase().includes(query)))
+  );
+  if (match) {
+    selectTemple(match.id);
+  }
+});
+
+initHistory();
+</script>
+</body>
+</html>
